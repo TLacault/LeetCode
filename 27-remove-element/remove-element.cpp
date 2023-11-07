@@ -2,7 +2,6 @@ class Solution {
 public:
     int removeElement(vector<int>& nums, int val) {
         vector<int> array;
-        array.reserve(nums.size());
         int k = 0;
         for (const auto &num : nums) {
             if (num != val) {
