@@ -9,12 +9,14 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        map<ListNode *, ListNode *> m;
-        ListNode *temp = head;
-        while (temp != NULL) {
-            if (m.contains(temp)) return true;
-            m[temp] = temp;
-            temp = temp->next;
+        ListNode *turtle = head;
+        ListNode *hare = head;
+        while (turtle != NULL && hare != NULL) {
+            turtle = turtle->next;
+            hare = hare->next;
+            if (!hare) return false;
+            hare = hare->next;
+            if (turtle == hare) return true;
         }
         return false;
     }
