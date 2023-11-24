@@ -12,15 +12,11 @@
 class Solution {
 public:
     bool is_sub(TreeNode* root, TreeNode* subRoot) {
-        if (!root && subRoot != NULL) return false;
-        if (root != NULL && !subRoot) return false;
         if (!root && !subRoot) return true;
-        
-        if (root->val == subRoot->val)
-            return (is_sub(root->left, subRoot->left) && is_sub(root->right, subRoot->right));
-
-        return false;
-
+        if (!root && subRoot) return false;
+        if (root && !subRoot) return false;
+        if (root->val != subRoot->val) return false;
+        return is_sub(root->left, subRoot->left) && is_sub(root->right, subRoot->right);
     }
 
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
@@ -28,7 +24,9 @@ public:
 
         if (root->val == subRoot->val)
             if (is_sub(root, subRoot)) return true;
-
-        return (isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot));
+        
+        if (isSubtree(root->left, subRoot)) return true;
+        if (isSubtree(root->right, subRoot)) return true;
+        return false;
     }
 };
