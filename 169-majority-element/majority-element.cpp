@@ -8,9 +8,11 @@ public:
             if (count == 0) {
                 element = nums[i];
                 count = 1;
-            } 
-            else if (element == nums[i]) count++;
-            else count--;
+            } else if (element == nums[i]) {
+                count++;
+            } else {
+                count--;
+            }
         }
 
         return element;
